@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Language Translator</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <link rel="stylesheet" href="{{url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>
+        <i class="fa-solid fa-language"></i>
+        Language Translator
+      </h1>
+    </div>
+
+    <div>
+      <div class="columns">
+        <div class="column">
+          <select name="source_language" id="sourceLang">
+            <option value="auto" {% if source_lang=='auto' %}selected{% endif %}>
+              Detect Language
+            </option>
+            {% for name, code in languages.items() %}
+            <option value="{{code}}" {% if source_lang==code %} selected {% endif %}>
+              {{name.title()}}
+            </option>
+            {% endfor %}
+          </select>
+          <textarea id="inputText" name="text" maxlength="{{max_chars}}"
+            placeholder="Type text here...">{{original_text}}</textarea>
+          <div class="bottom-row">
+            <button type="button" id="sourceSpeakBtn" class="icon-btn" title="Listen">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <span id="charCount">0/{{max_chars}}</span>
+          </div>
+        </div>
+
+        <div class="column">
+          <select name="target_language" id="targetLang">
+            {% for name, code in languages.items() %}
+            <option value="{{code}}" {% if target_lang==code %} selected {% endif %}>
+              {{name.title()}}
+            </option>
+            {% endfor %}
+          </select>
+          <textarea id="outputText" readonly
+            placeholder="Translated text appears here...">{{translated_text}}</textarea>
+          <div class="bottom-row">
+            <button type="button" id="targetSpeakBtn" class="icon-btn" title="Listen">
+              <i class="fa-solid fa-volume-high"></i>
+            </button>
+            <button type="button" onclick="copyText()" class="icon-btn" title="Copy">
+              <i class="fa-regular fa-copy"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="center">
+        <button type="button" class="translate-btn" onclick="handleTranslate()">Translate</button>
+      </div>
+    </div>
+
+    <audio id="audioPlayer" style="display: none;"></audio>
+  </div>
+
+  <script id="tts-languages-data" type="application/json">{{ tts_languages | tojson }}</script>
+  <script>
+    const ttsLanguages = JSON.parse(document.getElementById('tts-languages-data').textContent);
+  </script>
+  <script src="{{url_for('static', filename='script.js')}}"></script>
+</body>
+
+</html>

@@ -1,0 +1,224 @@
+:root {
+    --bg-color: #f4f4f4;
+    --card-bg: #fff;
+    --primary: #4a7cff;
+    --primary-hover: #3a63d9;
+    --text-color: #222;
+    --muted-text: #555;
+  
+    --border: 1px solid #eee;
+  }
+  
+  body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-color);
+    color: var(--text-color);
+    margin: 0;
+    padding: 20px;
+    line-height: 1.5;
+  }
+  
+  .container {
+    max-width: 1000px;
+    margin: auto;
+    background: transparent;
+  }
+  
+  .header {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .header h1 {
+    color: var(--primary);
+    font-size: 30px;
+    font-weight: 600;
+    margin: 10px 0 4px 0;
+    letter-spacing: 0.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  
+  }
+  
+  .header h1 i {
+    color: var(--primary);
+    font-size: 26px;
+  }
+  
+  .columns {
+    display: flex;
+    gap: 20px;
+    margin-top: 20px;
+    box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  }
+  
+  .column {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    height: 320px;
+    background: var(--card-bg);
+    border-radius: 10px;
+    overflow: hidden;
+    padding: 12px;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.08);
+    border: var(--border);
+  }
+  
+  button {
+    font-family: 'Inter', sans-serif;
+  }
+  
+  select, textarea {
+    font-family: 'Inter', sans-serif;
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+  }
+  
+  select {
+    font-size: 14px;
+    border: none;
+    outline: none;
+    border-bottom: var(--border);
+    margin-bottom: 8px;
+    background: transparent;
+  }
+  
+  textarea {
+    min-height: 200px;
+    resize: vertical;
+  
+    border: none;
+    outline: none;
+    font-size: 15px;
+    line-height: 1.4;
+    flex: 1;
+  }
+  
+  .bottom-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: var(--border);
+    color: var(--muted-text);
+    padding-top: 8px;
+    margin-top: 8px;
+    font-size: 12px;
+  }
+  
+  .icon-btn {
+    color: var(--muted-text);
+    background: none;
+    border: none;
+    font-size: 18px;
+    aspect-ratio: 1/1;
+    cursor: pointer;
+    border-radius: 50%;
+  }
+  
+  .icon-btn:hover {
+    color: var(--text-color);
+    background: #eee;
+    transform: scale(1.05);
+  }
+  
+  .icon-btn:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+  }
+  
+  .center {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .translate-btn {
+    font-size: 16px;
+    padding: 10px 26px;
+    border: none;
+    border-radius: 8px;
+    background: var(--primary);
+    color: white;
+    cursor: pointer;
+    transition: background 0.2s ease, transform 0.1s ease;
+  }
+  
+  .translate-btn:hover {
+    background: var(--primary-hover);
+    transform: translateY(-1px);
+  }
+  
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+    pointer-events: none;
+    z-index: 1000;
+  }
+  
+  .toast.show {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  
+  .error-toast {
+    background-color: #e74c3c;
+  }
+  
+  @media (max-width: 768px) {
+    .container {
+      padding: 8px;
+    }
+    .header {
+      margin-bottom: 16px;
+    }
+    .header h1 {
+      font-size: 24px;
+    }
+    .columns {
+      flex-direction: column;
+      gap: 12px;
+      box-shadow: none;
+    }
+    .column {
+      min-height: unset;
+      height: auto;
+      padding: 10px;
+      border-radius: 8px;
+      box-shadow: none;
+      border: 1px solid #eee;
+    }
+    select {
+      margin-bottom: 10px;
+      padding: 10px;
+    }
+    textarea {
+      min-height: 70px;
+      padding: 12px;
+      font-size: 15px;
+    }
+    .bottom-row {
+      padding-top: 10px;
+      margin-top: 10px;
+    }
+    .center {
+      margin-top: 12px;
+    }
+    .translate-btn {
+      width: 80%;
+      padding: 12px;
+      font-size: 16px;
+    }
+  }
+  
